@@ -24,18 +24,20 @@ public class SKEntityListener<SandKernel> extends EntityListener {
 
     @Override
     public void onEntityDamage(EntityDamageEvent event) {
+    	System.out.println("Block Burning.");
     	if(!(event.getEntity() instanceof Block))
     		return;
     	
+    	System.out.println("Definitely a block.");
+    	
     	Block block = (Block)event.getEntity();
     	
-    	if(event.getCause() == EntityDamageEvent.DamageCause.LAVA && block.getType() == Material.SAND)
+    	if((event.getCause() == EntityDamageEvent.DamageCause.LAVA || event.getCause() == EntityDamageEvent.DamageCause.FIRE || event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK) && (block.getType() == Material.SAND || block.getType() == Material.GLASS))
     	{
-    		block.setType(Material.GLASS);
+    		System.out.println("WHEEEEE");
+    		if(block.getType() == Material.SAND)
+    			block.setType(Material.GLASS);
     		event.setCancelled(true);
     	}
-    	
-    	if(block.getType() == Material.GLASS)
-    		event.setCancelled(true);
     }
 }
