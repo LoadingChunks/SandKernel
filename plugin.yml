@@ -1,0 +1,4 @@
+name: SandKernel
+main: net.loadingchunks.plugins.SandKernel.SandKernel
+version: 1.0
+commands:
